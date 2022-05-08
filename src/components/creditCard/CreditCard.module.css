@@ -1,0 +1,26 @@
+
+.container{
+    width: 60%;
+    height: 300px;
+    background-image: url("../../assets/creditcard-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    border-radius: 10px;
+    color: white;
+    font-size: 22px;
+    text-transform: uppercase;
+    padding: 15px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.chipbankcard{
+    justify-content: space-between;
+    align-items: center;
+}
+.chipbankcard p{
+    font-weight: bold;
+    font-size: 30px;
+}
