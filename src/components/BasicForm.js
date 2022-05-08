@@ -1,39 +1,50 @@
 import useInput from "./hooks/use-input";
+import classes from "./BasicForm.module.css";
 
 const BasicForm = (props) => {
   const {
-    value: enteredFirstName,
-    valueIsValid: enteredFirstNameIsValid,
-    hasError: firstNameInputHasError,
-    valueChangeHandler: firstNameInputChangeHandler,
-    inputBlurChangeHandler: onBlurFirstNameInputChangeHandler,
-    reset: resetFirstNameInput,
+    value: enteredFullName,
+    valueIsValid: enteredFullNameIsValid,
+    hasError: fullNameInputHasError,
+    valueChangeHandler: fullNameInputChangeHandler,
+    inputBlurChangeHandler: onBlurFullNameInputChangeHandler,
+    reset: resetFullNameInput,
   } = useInput((value) => value.trim() !== "");
 
   const {
-    value: enteredLastName,
-    valueIsValid: enteredLastNameIsValid,
-    hasError: lastNameInputHasError,
-    valueChangeHandler: lastNameInputChangeHandler,
-    inputBlurChangeHandler: onBlurLastNameInputChangeHandler,
-    reset: resetLastNameInput,
-  } = useInput((value) => value.trim() !== "");
+    value: enteredNUmberCard,
+    valueIsValid: enteredNumberCardIsValid,
+    hasError: numberCardInputHasError,
+    valueChangeHandler: numberCardInputChangeHandler,
+    inputBlurChangeHandler: onBlurNumberCardInputChangeHandler,
+    reset: resetNumberCardInput,
+  } = useInput((value) => value.length === 16);
 
   const {
-    value: enteredEmail,
-    valueIsValid: enteredEmailIsValid,
-    hasError: emailInputHasError,
-    valueChangeHandler: emailInputChangeHandler,
-    inputBlurChangeHandler: onBlurEmailInputChangeHandler,
-    reset: resetEmailInput,
-  } = useInput((value) => value.includes("@"));
+    value: enteredDateExp,
+    valueIsValid: enteredDateExpIsValid,
+    hasError: dateExpInputHasError,
+    valueChangeHandler: dateExpInputChangeHandler,
+    inputBlurChangeHandler: onBlurDateExpInputChangeHandler,
+    reset: resetDateExpInput,
+  } = useInput((value) => value.length === 4);
+
+  const {
+    value: enteredcvv,
+    valueIsValid: enteredcvvIsValid,
+    hasError: cvvInputHasError,
+    valueChangeHandler: cvvInputChangeHandler,
+    inputBlurChangeHandler: onBlurcvvInputChangeHandler,
+    reset: resetcvvInput,
+  } = useInput((value) => value.length === 3);
 
   let formIsValid = false;
 
   if (
-    enteredFirstNameIsValid &&
-    enteredLastNameIsValid &&
-    enteredEmailIsValid
+    enteredFullNameIsValid &&
+    enteredNumberCardIsValid &&
+    enteredDateExpIsValid &&
+    enteredcvvIsValid
   ) {
     formIsValid = true;
   }
@@ -45,64 +56,99 @@ const BasicForm = (props) => {
       return;
     }
     console.log("siuuu");
-    resetFirstNameInput();
-    resetLastNameInput();
-    resetEmailInput();
+    resetFullNameInput();
+    resetNumberCardInput();
+    resetDateExpInput();
+    resetcvvInput();
   };
 
-  const firstNameInputClasses = firstNameInputHasError
-    ? "form-control invalid"
-    : "form-control";
-  const lastNameInputClasses = lastNameInputHasError
-    ? "form-control invalid"
-    : "form-control";
-  const emailInputClasses = emailInputHasError
-    ? "form-control invalid"
-    : "form-control";
+  props.exportData({
+    fullname: enteredFullName,
+    numbercard: enteredNUmberCard,
+    dateexp: enteredDateExp,
+    cvv: enteredcvv,
+  });
+
+  // className={`${classes["form-control"]} ${classes.invalid}`}
+
+  const fullNameInputClasses = fullNameInputHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
+  const numberCardInputClasses = numberCardInputHasError
+  ? `${classes["form-control"]} ${classes.invalid}`
+  : classes["form-control"];
+  const dateExpInputClasses = dateExpInputHasError
+  ? `${classes["form-control"]} ${classes.invalid}`
+  : classes["form-control"];
+  const cvvInputClasses = cvvInputHasError
+  ? `${classes["form-control"]} ${classes.invalid}`
+  : classes["form-control"];
 
   return (
-    <form onSubmit={formSubmissionHandler}>
-      <div className="control-group">
-        <div className={firstNameInputClasses}>
-          <label htmlFor="firstName">First Name</label>
+    <form onSubmit={formSubmissionHandler} className={classes["form-control"]}>
+      <div className={classes["control-group"]}>
+        <div className={fullNameInputClasses}>
+          <label htmlFor="name">Full Name</label>
           <input
-            value={enteredFirstName}
+            value={enteredFullName}
             type="text"
-            id="firstName"
-            onChange={firstNameInputChangeHandler}
-            onBlur={onBlurFirstNameInputChangeHandler}
+            id="name"
+            onChange={fullNameInputChangeHandler}
+            onBlur={onBlurFullNameInputChangeHandler}
           />
-          {firstNameInputHasError && (
-            <p className={"error-text"}>First Name must not be empty</p>
+          {fullNameInputHasError && (
+            <p className={classes["error-text"]}>Full Name must not be empty</p>
           )}
         </div>
-        <div className={lastNameInputClasses}>
-          <label htmlFor="lastName">Last Name</label>
+        <div className={numberCardInputClasses}>
+          <label htmlFor="numberCard">Number Card</label>
           <input
-            value={enteredLastName}
-            type="text"
-            id="lastName"
-            onChange={lastNameInputChangeHandler}
-            onBlur={onBlurLastNameInputChangeHandler}
+            value={enteredNUmberCard}
+            type="number"
+            id="numberCard"
+            onChange={numberCardInputChangeHandler}
+            onBlur={onBlurNumberCardInputChangeHandler}
           />
-          {lastNameInputHasError && (
-            <p className={"error-text"}>Last Name must not be empty</p>
+          {numberCardInputHasError && (
+            <p className={classes["error-text"]}>
+              NumberCard must not be 18 numbers
+            </p>
           )}
         </div>
+        <div className={dateExpInputClasses}>
+          <label htmlFor="dateexp">Date exp</label>
+          <input
+            value={enteredDateExp}
+            type="number"
+            id="dateexp"
+            onChange={dateExpInputChangeHandler}
+            onBlur={onBlurDateExpInputChangeHandler}
+          />
+          {dateExpInputHasError && (
+            <p className={classes["error-text"]}>
+              Date exp must be MM / YY format
+            </p>
+          )}
+        </div>
+
+        <div className={cvvInputClasses}>
+          <label htmlFor="cvv">CVV</label>
+          <input
+            value={enteredcvv}
+            type="password"
+            id="cvv"
+            onChange={cvvInputChangeHandler}
+            onBlur={onBlurcvvInputChangeHandler}
+          />
+          {cvvInputHasError && (
+            <p className={classes["error-text"]}>
+              CVV must be 3 numbers
+            </p>
+          )}
+        </div>
+
       </div>
-      <div className={emailInputClasses}>
-        <label htmlFor="email">E-Mail Address</label>
-        <input
-          value={enteredEmail}
-          type="email"
-          id="email"
-          onChange={emailInputChangeHandler}
-          onBlur={onBlurEmailInputChangeHandler}
-        />
-        {emailInputHasError && (
-          <p className={"error-text"}>Enter a valid email</p>
-        )}
-      </div>
+
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
       </div>
