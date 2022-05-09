@@ -14,34 +14,50 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
+  font-weight: bold;
 }
 .row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 40px;
 }
+
 .chipbankcard {
   justify-content: space-between;
   align-items: center;
 }
-.chipbankcard p {
-  font-weight: bold;
-  font-size: 35px;
-}
+
 .numbercard {
   justify-content: center;
-  border-radius: 5px;
+  align-content: center;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid transparent;
 }
 .namecard {
+  align-content: center;
   font-size: 22px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid transparent;
 }
 .expcvv {
   justify-content: space-between;
-  align-items: center;
+  align-content: center;
 }
+.dateExp {
+  border-radius: 10px;
+  border: 2px solid transparent;
+  min-width: 30px;
+  padding: 5px;
+}
+.cvv {
+  border-radius: 10px;
+  border: 2px solid transparent;
 
-.numbercard:hover,
-.namecard:hover {
-  border: 2px solid rgba(255, 255, 255, 0.65);
+}
+.onfocus {
+  border-color: white;
   background-color: rgba(87, 85, 85, 0.8);
 }

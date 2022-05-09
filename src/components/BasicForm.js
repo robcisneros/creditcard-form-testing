@@ -1,7 +1,12 @@
 import useInput from "./hooks/use-input";
 import classes from "./BasicForm.module.css";
 
+import { focusActions } from "../store/focus-slice"
+import { useDispatch } from "react-redux";
+
 const BasicForm = (props) => {
+  const dispatch = useDispatch();
+
   const {
     value: enteredFullName,
     valueIsValid: enteredFullNameIsValid,
@@ -47,6 +52,10 @@ const BasicForm = (props) => {
     enteredcvvIsValid
   ) {
     formIsValid = true;
+  }
+
+  const onFocusHandler = (itemOnFocus) => {
+    dispatch(focusActions.changeItemFocus(itemOnFocus));
   }
 
   const formSubmissionHandler = (event) => {
@@ -95,6 +104,7 @@ const BasicForm = (props) => {
             id="name"
             onChange={fullNameInputChangeHandler}
             onBlur={onBlurFullNameInputChangeHandler}
+            onFocus={ ()=> onFocusHandler("fullname")}
           />
           {fullNameInputHasError && (
             <p className={classes["error-text"]}>Full Name must not be empty</p>
@@ -108,10 +118,11 @@ const BasicForm = (props) => {
             id="numberCard"
             onChange={numberCardInputChangeHandler}
             onBlur={onBlurNumberCardInputChangeHandler}
+            onFocus={ ()=> onFocusHandler("numberCard")}
           />
           {numberCardInputHasError && (
             <p className={classes["error-text"]}>
-              NumberCard must not be 18 numbers
+              NumberCard must be 16 numbers
             </p>
           )}
         </div>
@@ -123,6 +134,7 @@ const BasicForm = (props) => {
             id="dateexp"
             onChange={dateExpInputChangeHandler}
             onBlur={onBlurDateExpInputChangeHandler}
+            onFocus={ ()=> onFocusHandler("dateExp")}
           />
           {dateExpInputHasError && (
             <p className={classes["error-text"]}>
@@ -139,6 +151,7 @@ const BasicForm = (props) => {
             id="cvv"
             onChange={cvvInputChangeHandler}
             onBlur={onBlurcvvInputChangeHandler}
+            onFocus={ ()=> onFocusHandler("cvv")}
           />
           {cvvInputHasError && (
             <p className={classes["error-text"]}>
