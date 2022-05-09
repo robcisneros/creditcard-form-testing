@@ -17,7 +17,7 @@ const BasicForm = (props) => {
   } = useInput((value) => value.trim() !== "");
 
   const {
-    value: enteredNUmberCard,
+    value: enteredNumberCard,
     valueIsValid: enteredNumberCardIsValid,
     hasError: numberCardInputHasError,
     valueChangeHandler: numberCardInputChangeHandler,
@@ -73,7 +73,7 @@ const BasicForm = (props) => {
 
   props.exportData({
     fullname: enteredFullName,
-    numbercard: enteredNUmberCard,
+    numbercard: enteredNumberCard,
     dateexp: enteredDateExp,
     cvv: enteredcvv,
   });
@@ -113,8 +113,9 @@ const BasicForm = (props) => {
         <div className={numberCardInputClasses}>
           <label htmlFor="numberCard">Number Card</label>
           <input
-            value={enteredNUmberCard}
-            type="number"
+            value={enteredNumberCard}
+            type="tel"
+            maxLength="16"
             id="numberCard"
             onChange={numberCardInputChangeHandler}
             onBlur={onBlurNumberCardInputChangeHandler}
@@ -130,7 +131,8 @@ const BasicForm = (props) => {
           <label htmlFor="dateexp">Date exp</label>
           <input
             value={enteredDateExp}
-            type="number"
+            type="tel"
+            maxLength="4"
             id="dateexp"
             onChange={dateExpInputChangeHandler}
             onBlur={onBlurDateExpInputChangeHandler}
