@@ -21,7 +21,7 @@
     padding: 0.5rem;
     border-radius: 4px;
     border: 1px solid #ccc;
-    width: 20rem;
+    /* width: 20rem; */
     max-width: 100%;
   }
   
@@ -38,7 +38,8 @@
   }
   
   .control-group .form-control {
-    min-width: 15rem;
+    /* min-width: 15rem; */
+    max-width: 90%;
     flex: 1;
   }
   

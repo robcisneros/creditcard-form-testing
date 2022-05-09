@@ -1,3 +1,9 @@
 .reacticons{
     font-size: 75px;
 }
+
+@media (max-width:900px){
+    .reacticons{
+        font-size: 45px;
+    }
+  }

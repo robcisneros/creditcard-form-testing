@@ -1,6 +1,6 @@
 .container {
   width: 60%;
-  height: 300px;
+  height: 250px;
   background-image: url("../../assets/creditcard-bg.jpg");
   background-repeat: no-repeat;
   background-size: 100% auto;
@@ -20,12 +20,14 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 40px;
+  height: 38px;
 }
 
 .chipbankcard {
   justify-content: space-between;
   align-items: center;
+  font-size: 35px;
+  margin-bottom: 10px;
 }
 
 .numbercard {
@@ -37,8 +39,8 @@
 }
 .namecard {
   align-content: center;
-  font-size: 22px;
   padding: 5px;
+  font-size: 22px;
   border-radius: 10px;
   border: 2px solid transparent;
 }
@@ -51,6 +53,7 @@
   border: 2px solid transparent;
   min-width: 30px;
   padding: 5px;
+  max-width: 90px;
 }
 .cvv {
   border-radius: 10px;
@@ -60,4 +63,57 @@
 .onfocus {
   border-color: white;
   background-color: rgba(87, 85, 85, 0.8);
+}
+
+@media (max-width:1000px){
+  .container{
+    width: 70%;
+    height: 200px;
+  }
+  .row{
+    height: 30px;
+  }
+  .namecard{
+    font-size: 18px;
+  }
+  .dateExp{
+    max-width: 50px;
+  }
+}
+@media (max-width:650px){
+  .container{
+    font-size: 25px;
+    height: 170px;
+  }
+  .row{
+    height: 25px;
+  }
+  .namecard{
+    font-size: 18px;
+  }
+  .dateExp{
+    max-width: 50px;
+    font-size: 25px;
+  }
+}
+
+@media (max-width:650px){
+  .container{
+    font-size: 20px;
+    height: 110px;
+  }
+  .row{
+    height: 15px;
+  }
+  .namecard{
+    font-size: 12px;
+  }
+  .dateExp{
+    max-width: 50px;
+    font-size: 20px;
+    height: 18px;
+  }
+  .chipbankcard{
+    font-size: 25px;
+  }
 }
