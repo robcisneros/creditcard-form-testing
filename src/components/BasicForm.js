@@ -114,8 +114,7 @@ const BasicForm = (props) => {
           <label htmlFor="numberCard">Number Card</label>
           <input
             value={enteredNumberCard}
-            type="tel"
-            maxLength="16"
+            type="number"
             id="numberCard"
             onChange={numberCardInputChangeHandler}
             onBlur={onBlurNumberCardInputChangeHandler}
@@ -131,8 +130,7 @@ const BasicForm = (props) => {
           <label htmlFor="dateexp">Date exp</label>
           <input
             value={enteredDateExp}
-            type="tel"
-            maxLength="4"
+            type="number"
             id="dateexp"
             onChange={dateExpInputChangeHandler}
             onBlur={onBlurDateExpInputChangeHandler}
